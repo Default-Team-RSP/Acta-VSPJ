@@ -1,4 +1,4 @@
-﻿<?php echo "PHP is working !";
+<?php 
 require("connect.php");
 ?>
 
