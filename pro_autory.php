@@ -9,7 +9,7 @@ require("connect.php");
             <h2>Pro autory (přispěvatele)</h2>        
             <div class="alert alert-info alert-dismissible fade show">            
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                K podání příspěvku je třeba se <a href="#" class="alert-link" data-bs-toggle="modal" data-bs-target="#login">přihlásit</a>.         
+                K podání příspěvku je třeba se <a href="#login" class="alert-link" data-bs-toggle="modal" data-bs-target="#login">přihlásit</a>.         
             </div>
                 <h3>O časopisu</h3>
                     <p>Časopis <span class="text-success">Acta VŠPJ</span> je
@@ -43,7 +43,7 @@ require("connect.php");
                 <h3>Náležitosti textu a formátování</h3>
                     <p>Informace o doporučené struktuře a formátování textu jsou
                     dostupné prostřednictvím redakční šablony.</p>
-                    <p>Ke stažení zde: <a href=""></a></p>
+                    <p>Ke stažení zde: <a href="assets/docs/Šablona.docx" target=_blank><i class="bi bi-file-word-fill"></i></a></p>
                 <h3>Recenzní řízení</h3>
                     <p>Každý příspěvek je před vydáním posouzen dvěma recenzenty dle
                     následujících kritérií:</p>
