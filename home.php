@@ -3,10 +3,7 @@ require("connect.php");
 ?>
 
 <!-- Stránka -->             
-<main class="container">                     
-    <div class="p-4 mb-3 bg-light rounded alert alert-danger">                             
-        <p class="mb-0"><strong>Tato aplikace je výsledkem školního projektu v kurzu Řízení SW projektů na Vysoké škole polytechnické Jihlava. Nejedná se o stránky skutečného odborného časopisu!</strong></p>                     
-    </div>                     
+                   
     <div class="container my-5">                             
         <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">                                     
             <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">                                             
@@ -51,7 +48,7 @@ require("connect.php");
                                             echo "</table>";
                             
                         } else {
-                            echo "0 results";
+                            echo "žádné výsledky";
                         }
 
                         ?>
@@ -63,4 +60,3 @@ require("connect.php");
 
         </div>
     </div>
-</main>

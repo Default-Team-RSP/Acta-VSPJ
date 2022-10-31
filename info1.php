@@ -26,7 +26,7 @@
                                 echo "</ol>";
                           }
                         } else {
-                          echo "0 results";
+                          echo "žádné výsledky";
                         }
                     ?>
                 </div>

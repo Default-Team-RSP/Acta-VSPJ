@@ -13,8 +13,6 @@ require("connect.php");
             <div class="modal-body">
                 <div class="mb-3">
                 </div>
-            </div>
-            <div class="modal-footer">
                 <!--<button type="submit" class="btn btn-dark">Registrovat</button>-->
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>
             </div>

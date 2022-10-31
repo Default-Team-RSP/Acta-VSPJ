@@ -3,10 +3,10 @@ require("connect.php");
 ?>
 
 <!-- Menu -->
-<header class="p-3 bg-dark text-white">    
-    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">        
-        <div class="container-fluid">            
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"><span class="navbar-toggler-icon"></span></button>            
+<header class="p-3 bg-dark text-white">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark fixed-top">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="menu">
 
                 <?php
@@ -24,22 +24,22 @@ require("connect.php");
                     <li class="nav-item"><a class="nav-link <?php active('pro_autory');?>" href="index.php?stranka=pro_autory">Pro autory</a></li>
                 </ul> 
 
-                <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">                
-                    <div class="input-group">                    
-                        <input class="form-control form-control-dark" type="text" placeholder="Vyhledat článek..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />                    
-                        <button class="btn btn-outline-light" id="btnNavbarSearch" type="button"><i class="bi bi-search"></i></button>               
-                    </div>            
-                </form>                
-                <div class="dropdown">                       
+                <form action="search.php" method="GET" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
+                    <div class="input-group">
+                        <input class="form-control form-control-dark" type="text" name="query" placeholder="Vyhledat článek..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
+                        <button class="btn btn-outline-light" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button>
+                    </div>
+                </form>
+                <div class="dropdown">
                     <button type="button" class="btn btn-outline-light me-2 dropdown-toggle" data-bs-toggle="dropdown">    
                                 <i class="bi bi-person-fill"></i>  
                     </button>  
                     <ul class="dropdown-menu">    
                         <li><a href="#login" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#login">Přihlášení</a></li>    
                         <li><a href="#signup" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#signup">Registrace</a></li>  
-                    </ul>                
-                </div>                                     
-                <a href="#" class="btn btn-danger">Helpdesk</a>                             
+                    </ul>
+                </div>
+                <a href="helpdesk.php" class="btn btn-danger">Helpdesk</a>
             </div>        
         </div>    
     </nav>

@@ -6,7 +6,7 @@ require("connect.php");
 <main class="container">
     <div class="container p-4" style="padding-top:10px">    
         <div class="container mt-3">
-            <h2>Pro autory (přispěvatele)</h2>        
+            <h2 class="pb-4 mb-4">Pro autory (přispěvatele)</h2>        
             <div class="alert alert-info alert-dismissible fade show">            
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 K podání příspěvku je třeba se <a href="#login" class="alert-link" data-bs-toggle="modal" data-bs-target="#login">přihlásit</a>.         

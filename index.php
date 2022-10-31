@@ -1,4 +1,4 @@
-<?php 
+﻿<?php
 require("connect.php");
 ?>
 
@@ -23,7 +23,12 @@ require("connect.php");
     include_once("login.php");
     include_once("signup.php");
 
+
     ?>
+    <main class="container">                     
+    <div class="mb-2 bg-light rounded alert alert-danger">                             
+        <p class="mb-0"><strong>Tato aplikace je výsledkem školního projektu v kurzu Řízení SW projektů na Vysoké škole polytechnické Jihlava. Nejedná se o stránky skutečného odborného časopisu!</strong></p>                     
+    </div>  
     <section>
         <?php
         if (isset($_GET['stranka']))
@@ -38,6 +43,7 @@ require("connect.php");
             echo('Error 400 Bad Request');
         ?>
     </section>
+    </main>
     <?php
     include_once("footer.php");
     ?>

@@ -24,15 +24,13 @@ require("connect.php");
                             <label class="form-check-label">
                                 <input class="form-check-input" type="checkbox" name="remember"> Zůstat přihlášen
                             </label>                                                                                      
-                        </div>                                                                                                       
+                        </div>
+                        <button type="submit" class="btn btn-dark">Přihlásit</button>                                           
+                        <!--<a href="dashboard.html" class="btn btn-dark">Přihlásit</a>-->                                          
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>                                                                                                       
                     </form>                                                              
                 </div>                                                  
             </div>                                 
-            <div class="modal-footer">                                         
-                <button type="submit" class="btn btn-dark">Přihlásit</button>                                           
-                <!--<a href="dashboard.html" class="btn btn-dark">Přihlásit</a>-->                                          
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>                                        
-            </div>                                      
         </div>                          
     </div>              
 </div>
