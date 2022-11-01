@@ -26,8 +26,9 @@ require("connect.php");
 
     ?>
     <main class="container">                     
-    <div class="mb-2 bg-light rounded alert alert-danger">                             
-        <p class="mb-0"><strong>Tato aplikace je výsledkem školního projektu v kurzu Řízení SW projektů na Vysoké škole polytechnické Jihlava. Nejedná se o stránky skutečného odborného časopisu!</strong></p>                     
+    <div class="bg-light rounded alert alert-danger alert-dismissible fade show" role="alert">                             
+        <strong>Tato aplikace je výsledkem školního projektu v kurzu Řízení SW projektů na Vysoké škole polytechnické Jihlava. Nejedná se o stránky skutečného odborného časopisu!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>                   
     </div>  
     <section>
         <?php

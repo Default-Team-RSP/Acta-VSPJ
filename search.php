@@ -26,54 +26,52 @@ require("connect.php");
     ?>
 
 <main class="container">
-    <div class="mb-2 bg-light rounded alert alert-danger">                             
-        <p class="mb-0"><strong>Tato aplikace je výsledkem školního projektu v kurzu Řízení SW projektů na Vysoké škole polytechnické Jihlava. Nejedná se o stránky skutečného odborného časopisu!</strong></p>                     
-    </div>  
-    <div class="container p-4" style="padding-top:10px">    
-        <div class="container mt-3">
-            <h2 class="pb-4 mb-4">Výsledky vyhledávání</h2>
+    <div class="bg-light rounded alert alert-danger alert-dismissible fade show" role="alert">                             
+        <strong>Tato aplikace je výsledkem školního projektu v kurzu Řízení SW projektů na Vysoké škole polytechnické Jihlava. Nejedná se o stránky skutečného odborného časopisu!</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>                   
+    </div> 
+    <h2 class="pb-4 mb-4">Výsledky vyhledávání</h2>
+    
+    <?php
+
+        $query = $_GET['query'];
+        
+        $min_length = 3;        // minimální délka
+        
+        if(isset($query) >= $min_length){
             
-            <?php
-
-                $query = $_GET['query'];
+            $query = htmlspecialchars($query); 
+           
+            $sql = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles JOIN Users ON Articles.UserID = Users.UserID WHERE (Articles.Title LIKE '%".$query."%') OR (Users.Lastname LIKE '%".$query."%') OR (Users.Firstname LIKE '%".$query."%')";
+            
+            $result = $conn->query($sql);
+            
+            if($result->num_rows > 0){
                 
-                $min_length = 3;        // minimální délka
+                echo "<table class='table'><tr><th style='width: 50%'>Název</th><th style='width: 40%'>Autor</th><th style='width: 10%'>PDF</th></tr>";
                 
-                if(isset($query) >= $min_length){
-                    
-                    $query = htmlspecialchars($query); 
-                   
-                    $sql = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles JOIN Users ON Articles.UserID = Users.UserID WHERE (Articles.Title LIKE '%".$query."%') OR (Users.Lastname LIKE '%".$query."%') OR (Users.Firstname LIKE '%".$query."%')";
-                    
-                    $result = $conn->query($sql);
-                    
-                    if($result->num_rows > 0){
-                        
-                        echo "<table class='table'><tr><th style='width: 50%'>Název</th><th style='width: 40%'>Autor</th><th style='width: 10%'>PDF</th></tr>";
-                        
-                        while($row = $result->fetch_assoc()){
+                while($row = $result->fetch_assoc()){
 
-                            echo "<tr><td style='width: 50%'>".$row["Title"]."</td>
-                            <td style='width: 40%'>".$row["Author"]."</td>
-                            <td style='width: 10%'><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td></tr>";
-                        }
-                        
-                        echo "</table>";
-                        
-                    }
-                    else{
-                        echo "žádné výsledky";
-                    }
-                    
+                    echo "<tr><td style='width: 50%'>".$row["Title"]."</td>
+                    <td style='width: 40%'>".$row["Author"]."</td>
+                    <td style='width: 10%'><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td></tr>";
                 }
-                else{
-                    echo "Minimální délka je ".$min_length;
-                }
-            ?>
+                
+                echo "</table>";
+                
+            }
+            else{
+                echo "žádné výsledky";
+            }
+            
+        }
+        else{
+            echo "Minimální délka je ".$min_length;
+        }
+    ?>
 
 
-        </div>
-    </div>    
+ 
 </main>
     
     <?php

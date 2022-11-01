@@ -114,3 +114,8 @@ VALUES
         (SELECT UserID FROM Users WHERE Firstname ='Servác' AND Lastname ='Netík' AND Role = 'Author'),
         (SELECT JournalID FROM Journals WHERE Issue ='3' AND Volume ='2022')
     );
+
+-- přidání dat testovacího uživatel s heslem
+INSERT INTO Users (Firstname, Lastname, Username, Password, Role) 
+VALUES
+    ('Jan', 'Novák', 'test', (SELECT MD5('test')), 'Author');

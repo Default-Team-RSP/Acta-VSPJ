@@ -4,13 +4,11 @@ require("connect.php");
 
 <!-- Stránka -->
 <main class="container">
-    <div class="container p-4" style="padding-top:10px">    
-        <div class="container mt-3">
             <h2 class="pb-4 mb-4">Pro autory (přispěvatele)</h2>        
-            <div class="alert alert-info alert-dismissible fade show">            
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                K podání příspěvku je třeba se <a href="#login" class="alert-link" data-bs-toggle="modal" data-bs-target="#login">přihlásit</a>.         
-            </div>
+                <div class="alert alert-info alert-dismissible fade show">            
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    K podání příspěvku je třeba se <a href="#login" class="alert-link" data-bs-toggle="modal" data-bs-target="#login">přihlásit</a>.         
+                </div>
                 <h3>O časopisu</h3>
                     <p>Časopis <span class="text-success">Acta VŠPJ</span> je
                     vysokoškolský odborný recenzovaný časopis, který slouží pro
@@ -69,6 +67,4 @@ require("connect.php");
                     Kontaktní osoba:<br>
                     Mgr. Dobromila Rettigová<br>
                     e-mail: acta@vspj.cz</p>
-        </div>
-    </div>    
 </main>

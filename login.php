@@ -1,36 +1,58 @@
 ﻿<?php
-require("connect.php");
+ //Set up your login name and password here
+// $username="test";
+// $password="test";
+ 
+ 
+
+if (isset($_GET['action']))
+ {
+    require("connect.php");
+    $username=$_POST['username'];
+    $password=md5($_POST['password']);
+
+    $sql = "SELECT * FROM Users WHERE Username='$username' AND Password='$password' ";
+
+    $result = mysqli_query($conn, $sql);
+
+    if ( mysqli_num_rows($result)>0 )
+    {
+        $zaznam = mysqli_fetch_assoc($result);
+        session_start();
+        header("Cache-control: private");
+        $_SESSION["user_is_logged"] = 1;
+        $_SESSION["role"] = $zaznam['role'];
+        $_SESSION["username"] = $zaznam['usernamen'];
+        header("Location:dashboard.html");
+        exit;
+    }
+  
+}
 ?>
 
-<!-- Přihlašovací okno -->                
-<div class="modal fade" id="login">                          
-    <div class="modal-dialog">                                      
-        <div class="modal-content">                                                  
-            <div class="modal-header bg-dark text-white border border-white">                                                              
-                <h4 class="modal-title">Přihlášení</h4>                                                                       
-            </div>                                                  
-            <div class="modal-body">                                                              
-                <div class="container mt-3">                                                                          
-                    <form action="/action_page.php" method="post">
-                        <div class="mb-3 mt-3">                                                                                                  
+<!-- Přihlašovací okno -->
+<div class="modal fade" id="login">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header bg-dark text-white border border-white">
+                <h4 class="modal-title">Přihlášení</h4>
+            </div>
+            <div class="modal-body">
+                <div class="container mt-3">
+                    <form action="./index.php?action=validate" method="post">
+                        <div class="mb-3 mt-3">
                             <label for="username">Uživatelské jméno</label>
                             <input type="text" class="form-control" id="username" placeholder="Uživatelské jméno" name="username" required>
-                        </div>                                                                                      
-                        <div class="mb-3">                                                                                                  
-                            <label for="pwd">Heslo</label>
-                            <input type="password" class="form-control" id="password" placeholder="Heslo" name="password" required>
-                        </div>                                                                                      
-                        <div class="form-check mb-3">
-                            <label class="form-check-label">
-                                <input class="form-check-input" type="checkbox" name="remember"> Zůstat přihlášen
-                            </label>                                                                                      
                         </div>
-                        <button type="submit" class="btn btn-dark">Přihlásit</button>                                           
-                        <!--<a href="dashboard.html" class="btn btn-dark">Přihlásit</a>-->                                          
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>                                                                                                       
-                    </form>                                                              
-                </div>                                                  
-            </div>                                 
-        </div>                          
-    </div>              
+                        <div class="mb-3">
+                            <label for="password">Heslo</label>
+                            <input type="password" class="form-control" id="password" placeholder="Heslo" name="password" required>
+                        </div>
+                        <button type="submit" class="btn btn-dark">Přihlásit</button>
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

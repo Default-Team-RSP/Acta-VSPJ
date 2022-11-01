@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="en">    
+    <head>        
+        <meta charset="utf-8" />        
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />        
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />        
+        <meta name="description" content="" />        
+        <meta name="author" content="" />        
+        <title>Acta VŠPJ | Dashboard - Admin</title>    
+        <!-- CSS -->        
+        <link href="https://cdn.jsdelivr.net/npm/simple-datatables@latest/dist/style.css" rel="stylesheet" />        
+        <link href="css/dashboard/styles.css" rel="stylesheet" />        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css" />    
+        <!-- Scripts -->        
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>        
+        <script src="js/scripts.js"></script>        
+        <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>        
+        <script src="js/datatables-simple-demo.js"></script>    
+    </head>    
+    <body class="sb-nav-fixed">        
+        <!-- horizontální menu -->        
+        <nav class="sb-topnav navbar navbar-expand navbar-dark bg-dark">            
+            <!-- Navbar Brand-->            
+            <a class="navbar-brand ps-3" href="dashboard.html">Acta VŠPJ</a>            
+            <!-- Sidebar Toggle-->            
+            <button class="btn btn-link btn-sm order-1 order-lg-0 me-4 me-lg-0" id="sidebarToggle" href="#!">
+                <span class="navbar-toggler-icon">
+                </span>
+            </button>            
+            <!-- Navbar Search-->            
+            <form class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">                
+                <div class="input-group">                    
+                    <input class="form-control form-control-dark" type="text" placeholder="Hledat..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />                    
+                    <button class="btn btn-outline-gray" id="btnNavbarSearch" type="button">
+                        <i class="bi bi-search"></i>
+                    </button>                
+                </div>            
+            </form>            
+            <!-- Navbar-->            
+            <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">                
+                <li class="nav-item dropdown">                    
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-person-fill"></i></a>                    
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">                        
+                        <li>
+                        <a class="dropdown-item" href="#">Nastavení</a>
+                </li>                        
+                <li>
+                <a class="dropdown-item" href="#">Profil</a>
+                </li>                        
+                <li>
+                <hr class="dropdown-divider" />
+                </li>                        
+                <li>
+                <a class="dropdown-item" href="index.php">Odhlásit</a>
+                </li>                    
+            </ul>                
+            </li>            
+            </ul>        
+        </nav>        
+        <!-- vertikální menu -->        
+        <div id="layoutSidenav">            
+            <div id="layoutSidenav_nav">                
+                <nav class="sb-sidenav accordion sb-sidenav-dark" id="sidenavAccordion">                    
+                    <div class="sb-sidenav-menu">                        
+                        <div class="nav">                            
+                            <!--<div class="sb-sidenav-menu-heading">Nadpis</div>
+                                                        <a class="nav-link" href="dashboard.html">
+                                                            <div class="sb-nav-link-icon"><i class="bi bi-speedometer"></i></div>
+                                                            Nástěnka
+                                                        </a>-->                                                         
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseArticles" aria-expanded="false" aria-controls="collapseArticles">                                
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-pencil-square"></i>
+                                </div>                                Příspěvky                                 
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>                            </a>                            
+                            <div class="collapse" id="collapseArticles" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">                                
+                                <nav class="sb-sidenav-menu-nested nav">                                    
+                                    <a class="nav-link" href="#">Přehled příspěvků</a>                                    
+                                    <a class="nav-link" href="#">Vytvořit příspěvek</a>                                    
+                                    <a class="nav-link" href="#">Rubriky</a>                                    
+                                    <a class="nav-link" href="#">Štítky</a>                                
+                                </nav>                            
+                            </div>                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseMedia" aria-expanded="false" aria-controls="collapseMedia">                                
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-collection-fill"></i>
+                                </div>                                Média                                 
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>                            </a>                            
+                            <div class="collapse" id="collapseMedia" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">                                
+                                <nav class="sb-sidenav-menu-nested nav">                                    
+                                    <a class="nav-link" href="#">Knihovna médií</a>                                    
+                                    <a class="nav-link" href="#">Nahrát soubor</a>                                
+                                </nav>                            
+                            </div>                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTasks" aria-expanded="false" aria-controls="collapseTasks">                                
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-journal-check"></i>
+                                </div>                                Správa úkolů                                 
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>                            </a>                            
+                            <div class="collapse" id="collapseTasks" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">                                
+                                <nav class="sb-sidenav-menu-nested nav">                                    
+                                    <a class="nav-link" href="#">Přehled úkolů</a>                                    
+                                    <a class="nav-link" href="#">Vytvořit úkolů</a>                                
+                                </nav>                            
+                            </div>                            
+                            <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseUsers" aria-expanded="false" aria-controls="collapseUsers">                                
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-people-fill"></i>
+                                </div>                                Uživatelé                                 
+                                <div class="sb-sidenav-collapse-arrow">
+                                    <i class="bi bi-chevron-down"></i>
+                                </div>                            </a>                            
+                            <div class="collapse" id="collapseUsers" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">                                
+                                <nav class="sb-sidenav-menu-nested nav">                                    
+                                    <a class="nav-link" href="#">Přehled uživatelů</a>                                    
+                                    <a class="nav-link" href="#">Vytvořit uživatele</a>                                    
+                                    <a class="nav-link" href="#">Profil</a>                                
+                                </nav>                            
+                            </div>                                                                         
+                            <a class="nav-link" href="#">                                
+                                <div class="sb-nav-link-icon">
+                                    <i class="bi bi-gear-fill"></i>
+                                </div>                                Nastavení                             </a>                            
+                            <hr class="dropdown-divider mt-3">
+                            </hr>                              
+                            <a class="nav-link btn btn-danger text-white" href="#">                                
+                                <div class="sb-nav-link-icon text-white">
+                                    <i class="bi bi-question-circle-fill"></i>
+                                </div>                                Helpdesk                             </a>                        
+                        </div>                    
+                    </div>                    
+                    <div class="sb-sidenav-footer">                        
+                        <div class="small">Přihlášen jako:
+                        </div>                        Jan Novák                     
+                    </div>                
+                </nav>            
+            </div>            
+            <!-- stránka -->            
+            <div id="layoutSidenav_content">                
+                <main>                    
+                    <div class="container-fluid px-4">                        
+                        <h1 class="mt-4">Nástěnka</h1>                        
+                        <ol class="breadcrumb mb-4">                            
+                            <li class="breadcrumb-item active">Dashboard
+                            </li>                        
+                        </ol>                        
+                        <div class="row">                            
+                            <div class="col-xl-3 col-md-6">                                
+                                <div class="card bg-primary text-white mb-4">                                    
+                                    <div class="card-body">Primary Card
+                                    </div>                                    
+                                    <div class="card-footer d-flex align-items-center justify-content-between">                                        
+                                        <a class="small text-white stretched-link" href="#">View Details</a>                                        
+                                        <div class="small text-white">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </div>                                    
+                                    </div>                                
+                                </div>                            
+                            </div>                            
+                            <div class="col-xl-3 col-md-6">                                
+                                <div class="card bg-warning text-white mb-4">                                    
+                                    <div class="card-body">Warning Card
+                                    </div>                                    
+                                    <div class="card-footer d-flex align-items-center justify-content-between">                                        
+                                        <a class="small text-white stretched-link" href="#">View Details</a>                                        
+                                        <div class="small text-white">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </div>                                    
+                                    </div>                                
+                                </div>                            
+                            </div>                            
+                            <div class="col-xl-3 col-md-6">                                
+                                <div class="card bg-success text-white mb-4">                                    
+                                    <div class="card-body">Success Card
+                                    </div>                                    
+                                    <div class="card-footer d-flex align-items-center justify-content-between">                                        
+                                        <a class="small text-white stretched-link" href="#">View Details</a>                                        
+                                        <div class="small text-white">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </div>                                    
+                                    </div>                                
+                                </div>                            
+                            </div>                            
+                            <div class="col-xl-3 col-md-6">                                
+                                <div class="card bg-danger text-white mb-4">                                    
+                                    <div class="card-body">Danger Card
+                                    </div>                                    
+                                    <div class="card-footer d-flex align-items-center justify-content-between">                                        
+                                        <a class="small text-white stretched-link" href="#">View Details</a>                                        
+                                        <div class="small text-white">
+                                            <i class="bi bi-chevron-right"></i>
+                                        </div>                                    
+                                    </div>                                
+                                </div>                            
+                            </div>                        
+                        </div>                        
+                        <div class="card mb-4">                            
+                            <div class="card-header">                                
+                                <i class="bi bi-table"></i>                                Přehled článků                             
+                            </div>                            
+                            <div class="card-body">                                
+                                <table id="datatablesSimple">                                    
+                                    <thead>                                        
+                                        <tr>                                            
+                                            <th>Název
+                                            </th>                                            
+                                            <th>Rubrika
+                                            </th>                                            
+                                            <th>Autor
+                                            </th>                                            
+                                            <th>Recenzent
+                                            </th>                                            
+                                            <th>Štítek
+                                            </th>                                                                              
+                                        </tr>                                    
+                                    </thead>                                    
+                                    <tfoot>                                        
+                                        <tr>                                            
+                                            <th>Název
+                                            </th>                                            
+                                            <th>Rubrika
+                                            </th>                                            
+                                            <th>Autor
+                                            </th>                                            
+                                            <th>Recenzent
+                                            </th>                                            
+                                            <th>Štítek
+                                            </th>                                                                
+                                        </tr>                                    
+                                    </tfoot>                                    
+                                    <tbody>                                        
+                                        <tr>                                            <td>Článek 1</td>                                            <td>vědy o přírodě</td>                                            <td>Autor 1</td>                                            <td>Recenzent 1</td>                                            <td>přijatý</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 2</td>                                            <td>společenské vědy</td>                                            <td>Autor 2</td>                                            <td>Recenzent 2</td>                                            <td>odeslaný do recenzního řízení</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 3</td>                                            <td>společenské vědy</td>                                            <td>Autor 3</td>                                            <td>Recenzent 2</td>                                            <td>k formálnímu doplnění</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 4</td>                                            <td>vědy o člověku</td>                                            <td>Autor 4</td>                                            <td>Recenzent 1</td>                                            <td>zamítnutý</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 5</td>                                            <td>technické vědy</td>                                            <td>Autor 5</td>                                            <td>Recenzent 3</td>                                            <td>odeslaný do recenzního řízení</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 6</td>                                            <td>ekonomické vědy</td>                                            <td>Autor 6</td>                                            <td>Recenzent 4</td>                                            <td>odeslaný do recenzního řízení</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 7</td>                                            <td>technické vědy</td>                                            <td>Autor 7</td>                                            <td>Recenzent 3</td>                                            <td>k formálnímu doplnění</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 8</td>                                            <td>ekonomické vědy</td>                                            <td>Autor 6</td>                                            <td>Recenzent 5</td>                                            <td>zamítnutý</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 9</td>                                            <td>společenské vědy</td>                                            <td>Autor 8</td>                                            <td>Recenzent 6</td>                                            <td>odeslaný do recenzního řízení</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 10</td>                                            <td>vědy o člověku</td>                                            <td>Autor 9</td>                                            <td>Recenzent 1</td>                                            <td>přijatý</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 11</td>                                            <td>technické vědy</td>                                            <td>Autor 10</td>                                            <td>Recenzent 7</td>                                            <td>přijatý</td>                                        
+                                        </tr>                                        
+                                        <tr>                                            <td>Článek 12</td>                                            <td>ekonomické vědy</td>                                            <td>Autor 6</td>                                            <td>Recenzent 4</td>                                            <td>zamítnutý</td>                                        
+                                        </tr>                                        
+                                        <tr>                                        
+                                            <tr>                                            <td>Článek 13</td>                                            <td>vědy o člověku</td>                                            <td>Autor 11</td>                                            <td>Recenzent 8</td>                                            <td>odeslaný do recenzního řízení</td>                                        
+                                            </tr>                                                                            
+                                    </tbody>                                
+                                </table>                            
+                            </div>                        
+                        </div>                    
+                    </div>                
+                </main>                
+                <!-- zápatí -->                
+                <footer class="py-4 bg-light mt-auto">                    
+                    <div class="container-fluid px-4">                        
+                        <div class="d-flex align-items-center justify-content-between small">                            
+                            <div class="text-muted">Copyright &copy; Default Team 2022
+                            </div>                                                     
+                        </div>                    
+                    </div>                
+                </footer>            
+            </div>        
+        </div>    
+    </body>
+</html>
