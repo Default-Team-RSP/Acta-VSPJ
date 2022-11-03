@@ -14,7 +14,7 @@ require("connect.php");
                 </div>                                                          
             </div>                                     
             <div class="col-lg-4 offset-lg-1 p-0 overflow-hidden shadow-lg d-none d-md-block">                                             
-                <img class="rounded-lg-3" src="assets/img/acta-vspj.png" alt="" height="450">                                     
+                <img class="rounded-lg-3" src="assets/img/acta-vspj.svg" alt="" height="450">                                     
             </div>                             
         </div>                     
     </div>            

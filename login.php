@@ -22,10 +22,14 @@ if (isset($_GET['action']))
         header("Cache-control: private");
         $_SESSION["user_is_logged"] = 1;
         $_SESSION["role"] = $zaznam['role'];
-        $_SESSION["username"] = $zaznam['usernamen'];
+        $_SESSION["username"] = $zaznam['username'];
         header("Location:dashboard.html");
         exit;
     }
+    else{
+                    $error_msg = "<div class='text-danger fw-bold'>Zadané přihlašovací údaje nejsou platné!</div>";
+                    $script =  "<script> $(document).ready(function(){ $('#login').modal('show'); }); </script>";
+                    }
   
 }
 ?>
@@ -39,6 +43,7 @@ if (isset($_GET['action']))
             </div>
             <div class="modal-body">
                 <div class="container mt-3">
+                <?php if(isset($error_msg)){ echo $error_msg; } ?>
                     <form action="./index.php?action=validate" method="post">
                         <div class="mb-3 mt-3">
                             <label for="username">Uživatelské jméno</label>
@@ -56,3 +61,5 @@ if (isset($_GET['action']))
         </div>
     </div>
 </div>
+
+<?php if(isset($script)){ echo $script; } ?>

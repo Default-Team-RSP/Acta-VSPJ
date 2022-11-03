@@ -41,7 +41,7 @@ require("connect.php");
                 <h3>Náležitosti textu a formátování</h3>
                     <p>Informace o doporučené struktuře a formátování textu jsou
                     dostupné prostřednictvím redakční šablony.</p>
-                    <p>Ke stažení zde: <a href="assets/docs/Šablona.docx" target=_blank><i class="bi bi-file-word-fill"></i></a></p>
+                    <p><a href="assets/docs/Šablona.docx" target=_blank>Šablona ke stažení zde.</i></a></p>
                 <h3>Recenzní řízení</h3>
                     <p>Každý příspěvek je před vydáním posouzen dvěma recenzenty dle
                     následujících kritérií:</p>
