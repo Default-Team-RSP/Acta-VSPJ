@@ -11,7 +11,7 @@ CREATE TABLE Users (
     Lastname varchar(255),
     Username varchar(255),
     Password varchar(255),
-    Role varchar(255),
+    Role varchar(255),                                  --role: Author, Editor (=redaktor), Chief (=šéfredaktor), Reviewer (=recenzent), Admin
     PRIMARY KEY (UserID),
     UNIQUE (Username));
 
