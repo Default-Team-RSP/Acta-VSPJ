@@ -54,7 +54,7 @@ CREATE TABLE Reviews (
     Reference boolean,                                   -- doporučení (true = doporučuji / false = nedoporučuji)
     ArticleID int NOT NULL,
     PRIMARY KEY (ReviewID),
-    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID)).
+    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID)),
     FOREIGN KEY (UserID) REFERENCES Users(UserID));     -- id recenzenta
 
 -- vytvoření tabulky helpdeskového formuláře
