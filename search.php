@@ -28,7 +28,7 @@ require("connect.php");
             
             if ($result->num_rows > 0) {
                 
-                echo "<table id='search'>
+                echo "<table id='datatablesSimple'>
                         <thead>
                             <tr>
                                 <th>Název</th>

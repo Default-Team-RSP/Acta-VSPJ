@@ -1,4 +1,8 @@
-﻿<!-- Informace o čísle -->
+﻿<?php
+    require("connect.php");
+?>
+
+<!-- Informace o čísle -->
 <div class="modal fade" id="info1">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -10,21 +14,26 @@
                 <div class="mb-3">
                     <?php
                         $n = 1;
-                        $sql = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume, Journals.Topic AS Topic, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Articles.Title AS Title FROM Journals INNER JOIN Articles ON Journals.JournalID = Articles.JournalID INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Volume ='2022' AND Issue =".$n;
-                        //$sql = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume, Journals.Topic AS Topic FROM Journals WHERE Volume ='2022' AND Issue =".$info;
+                        $y = 2022;
+                        $sql1 = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume, Journals.Topic AS Topic FROM Journals WHERE Volume ='2022' AND Issue =".$n;
+                        $sql2 = "SELECT CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Articles.Title AS Title FROM Articles INNER JOIN Journals ON Journals.JournalID = Articles.JournalID INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Volume ='".$y."' AND Issue =".$n;
 
-                        $result = $conn->query($sql);
+                        $result1 = $conn->query($sql1);
+                        $result2 = $conn->query($sql2);
 
-                        if ($result->num_rows > 0) {
+                        if ($result1->num_rows > 0) {
                           // output data of each row
-                          while($row = $result->fetch_assoc()) {
-                            echo "<p> Ročník: " . $row["Volume"]. " <br /> Číslo: č. " . $row["Issue"]. "<br /> Téma: " . $row["Topic"]. " <br /> Obsah: </p>";
-                            echo "<ol>";
-                                while($row = $result->fetch_assoc()) {
-                            echo "<li>". $row["Title"]. " (Autor: " . $row["Author"].")</li>";
+                            while($row = $result1->fetch_assoc()) {
+                                echo "Ročník: " . $row["Volume"]. " <br /> Číslo: č. " . $row["Issue"]. "<br /> Téma: " . $row["Topic"]. " <br />
+                                Obsah: <br />";
+                                if ($result2->num_rows > 0) {
+                                    echo "<ol>";
+                                        while($row = $result2->fetch_assoc()) {
+                                            echo "<li>". $row["Title"]. " (Autor: " . $row["Author"].")</li>";
+                                        }
+                                    echo "</ol>";
+                                }
                             }
-                                echo "</ol>";
-                          }
                         } else {
                           echo "žádné výsledky";
                         }
