@@ -42,7 +42,7 @@ require("connect.php");
                         <li><a href="#signup" class="dropdown-item" data-bs-toggle="modal" data-bs-target="#signup">Registrace</a></li>  
                     </ul>
                 </div>
-                <a href="index.php?stranka=helpdesk" class="btn btn-danger">Helpdesk</a>
+                <a href="#helpdesk" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#helpdesk">Helpdesk</a>
             </div>
         </div>
     </nav>

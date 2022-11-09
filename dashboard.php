@@ -2,6 +2,8 @@
 require("connect.php");
 ob_start();
 session_start();
+
+include_once("helpdesk.php");
 ?>
 
 <!DOCTYPE html>
@@ -23,6 +25,7 @@ session_start();
     <script src="js/scripts.js"></script>        
     <script src="https://cdn.jsdelivr.net/npm/simple-datatables@latest" crossorigin="anonymous"></script>
     <script src="js/datatables-simple-demo.js"></script>
+    
 
 </head>    
     <body class="sb-nav-fixed">
@@ -107,7 +110,7 @@ session_start();
                             </a>
                             <hr class="dropdown-divider mt-3">
                             </hr>
-                            <a class="nav-link btn btn-danger text-white" href="#">
+                            <a class="nav-link btn btn-danger text-white" href="#helpdesk" data-bs-toggle="modal" data-bs-target="#helpdesk">
                                 <div class="sb-nav-link-icon text-white">
                                     <i class="bi bi-question-circle-fill"></i>
                                 </div>
