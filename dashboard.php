@@ -4,6 +4,7 @@ ob_start();
 session_start();
 
 include_once("helpdesk.php");
+include_once("setreview.php");
 ?>
 
 <!DOCTYPE html>

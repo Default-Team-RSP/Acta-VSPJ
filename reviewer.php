@@ -47,7 +47,7 @@ require("connect.php");
                                     <td>".$row["Author"]."</td>
                                     <td>".$row["Attribute"]."</td>
                                     <td><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
-                                    echo"<td class='data-bs-toggle='tooltip' title='Oponentní formulář''><a href='#reviewform' data-bs-toggle='modal' data-bs-target='#reviewform'><img src='assets/img/form.svg' class='icon'></a></td>";
+                                    echo"<td class='data-bs-toggle='tooltip' title='Oponentní formulář''><a href='#reviewform' data-bs-toggle='modal' data-bs-target='#setreview'><img src='assets/img/form.svg' class='icon'></a></td>";
                         echo "</tr>";
                 }
                 
