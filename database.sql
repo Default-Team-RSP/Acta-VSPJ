@@ -54,7 +54,7 @@ CREATE TABLE Reviews (
     Reference boolean,                                  -- doporučení (true = doporučuji / false = nedoporučuji)
     ArticleID int NOT NULL,
     PRIMARY KEY (ReviewID),
-    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID)),
+    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID));     -- id recenzenta
 
 -- vytvoření tabulky helpdeskového formuláře
@@ -68,7 +68,7 @@ CREATE TABLE Helpdesk (
     Telefon int,
     Issue varchar(255),                                 -- Popis problému
     Checkbox boolean,
-    PRIMARY KEY (HelpdeskID);
+    PRIMARY KEY (HelpdeskID));
 
 -- přidání dat tabulky uživatelů
 
@@ -216,3 +216,9 @@ WHERE ArticleID = 9;
 UPDATE Articles
 SET Attribute = "vydaný"
 WHERE ArticleID = 10;
+
+-- přidání dat do tabulky recenzního formuláře
+
+INSERT INTO Reviews (UserID, ArticleID) 
+VALUES
+    ((SELECT UserID FROM Users WHERE username ='recenzent'), (SELECT ArticleID FROM Articles WHERE Attribute = "odeslaný do recenzního řízení"));

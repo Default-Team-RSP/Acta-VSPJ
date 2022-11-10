@@ -13,7 +13,7 @@ require("connect.php");
             <div class="card-body">
 <!-- tabulka -->
     <?php
-            $username = $_SESSION["username"];
+            $username = $_SESSION["username"]; //pouze konkrétního uživatele
             $sql = "SELECT Articles.Title AS Title, Articles.Attribute AS Attribute, Users.Username FROM Articles JOIN Users ON Articles.UserID = Users.UserID WHERE Username='".$username."'";
 
             $result = $conn->query($sql);
