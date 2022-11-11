@@ -1,5 +1,9 @@
-﻿<!-- Informace o čísle -->
-<div class="modal fade" id="info4">
+﻿<?php
+    require("connect.php");
+?>
+
+<!-- Informace o čísle -->
+<div class="modal fade" id="info_2022_1">
     <div class="modal-dialog">
         <div class="modal-content">
             <div class="modal-header bg-secondary">
@@ -9,10 +13,12 @@
             <div class="modal-body">
                 <div class="mb-3">
                     <?php
-                        $n = 4;
+                        $condition = "vydaný"; //pouze vydané články"
+                        $n = 1;
                         $y = 2022;
-                        $sql1 = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume, Journals.Topic AS Topic FROM Journals WHERE Volume ='2022' AND Issue =".$n;
-                        $sql2 = "SELECT CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Articles.Title AS Title FROM Articles INNER JOIN Journals ON Journals.JournalID = Articles.JournalID INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Volume ='".$y."' AND Issue =".$n;
+                        
+                        $sql1 = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume, Journals.Topic AS Topic FROM Journals WHERE Volume ='".$y."' AND Issue =".$n;
+                        $sql2 = "SELECT CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Articles.Title AS Title FROM Articles INNER JOIN Journals ON Journals.JournalID = Articles.JournalID INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Articles.Attribute LIKE '%".$condition."%' AND Volume ='".$y."' AND Issue =".$n;
 
                         $result1 = $conn->query($sql1);
                         $result2 = $conn->query($sql2);
