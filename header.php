@@ -26,12 +26,6 @@ require("connect.php");
                 <div class="d-none d-md-inline-block ms-auto me-0 my-md-0">
                     <a href="index.php?stranka=search" class="btn btn-outline-light me-2"><i class="bi bi-search h5"></i></a>
                 </div>
-                <!--<form action="search.php" method="GET" class="d-none d-md-inline-block form-inline ms-auto me-0 me-md-3 my-2 my-md-0">
-                    <div class="input-group">
-                        <input class="form-control form-control-dark" type="text" name="query" placeholder="Vyhledat článek..." aria-label="Search for..." aria-describedby="btnNavbarSearch" />
-                        <button class="btn btn-outline-light" id="btnNavbarSearch" type="submit"><i class="bi bi-search"></i></button>
-                    </div>
-                </form>-->
 
                 <div class="dropdown">
                     <button type="button" class="btn btn-outline-light me-2 dropdown-toggle" data-bs-toggle="dropdown">

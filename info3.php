@@ -25,7 +25,7 @@
                                 if ($result2->num_rows > 0) {
                                     echo "<ol>";
                                         while($row = $result2->fetch_assoc()) {
-                                            echo "<li>". $row["Title"]. " (Autor: " . $row["Author"].")</li>";
+                                            echo "<li>". $row["Title"]. " (Autor: " . $row["Author"].") <a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></li>";
                                         }
                                     echo "</ol>";
                                 }

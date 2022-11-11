@@ -14,7 +14,7 @@ require("connect.php");
     <?php
             $condition = "odeslaný do recenzního řízení"; //pouze články s příznakem "odeslaný do recenzního řízení"
             $username = $_SESSION["username"]; //pouze konkrétního uživatele
-            $sql = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Articles.Attribute AS Attribute FROM Articles JOIN Users ON Articles.UserID = Users.UserID JOIN Reviews ON Articles.ArticleID = Reviews.ArticleID WHERE (SELECT Users.UserID FROM Users WHERE username ='".$username."') AND Articles.Attribute LIKE '%".$condition."%'";
+            $sql = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Articles.Attribute AS Attribute FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID INNER JOIN Reviews ON Articles.ArticleID = Reviews.ArticleID WHERE (SELECT Users.UserID FROM Users WHERE username ='".$username."') AND Articles.Attribute LIKE '%".$condition."%'";
             
             $result = $conn->query($sql);
             

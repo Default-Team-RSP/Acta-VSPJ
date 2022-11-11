@@ -1,6 +1,5 @@
 ﻿<?php
 require("connect.php");
-
 ?>
 
 <!-- stránka -->
@@ -14,8 +13,10 @@ require("connect.php");
 <!-- tabulka -->
     <?php
             $username = $_SESSION["username"]; //pouze konkrétního uživatele
-            $sql = "SELECT Articles.Title AS Title, Articles.Attribute AS Attribute, Users.Username FROM Articles JOIN Users ON Articles.UserID = Users.UserID WHERE Username='".$username."'";
-
+            $sql = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Articles.Attribute AS Attribute FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID INNER JOIN Reviews ON Articles.ArticleID = Reviews.ArticleID WHERE (SELECT Users.UserID FROM Users WHERE username ='".$username."')";
+            
+            
+            
             $result = $conn->query($sql);
             
             if($result->num_rows > 0){
@@ -24,17 +25,19 @@ require("connect.php");
                         <thead>
                             <tr>
                                 <th>Název</th>
+                                <th>Autor</th>
                                 <th>Stav</th>
                                 <th>PDF</th>
-                                <th class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''>O.F.</th>
+                                <th class='data-bs-toggle='tooltip' title='Oponentní formulář''>O.F.</th>
                             </tr>
                         </thead>
                         <tfoot>
                             <tr>
                                 <th>Název</th>
+                                <th>Autor</th>
                                 <th>Stav</th>
                                 <th>PDF</th>
-                                <th class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''>O.F.</th>
+                                <th class='data-bs-toggle='tooltip' title='Oponentní formulář''>O.F.</th>
                             </tr>
                         </tfoot>";
                     echo "<tbody>";
@@ -43,14 +46,10 @@ require("connect.php");
 
                         echo "<tr>
                                     <td>".$row["Title"]."</td>
+                                    <td>".$row["Author"]."</td>
                                     <td>".$row["Attribute"]."</td>
                                     <td><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
-                                    $attr = $row['Attribute'];
-                                    if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
-                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='#showreview' data-bs-toggle='modal' data-bs-target='#showreview'><img src='assets/img/form-done.svg' class='icon'></a></td>";
-                                    } else {
-                                          echo"<td></td>";
-                                    }
+                                    echo"<td class='data-bs-toggle='tooltip' title='Oponentní formulář''><a href='#reviewform' data-bs-toggle='modal' data-bs-target='#setreview'><img src='assets/img/form.svg' class='icon'></a></td>";
                         echo "</tr>";
                 }
                 

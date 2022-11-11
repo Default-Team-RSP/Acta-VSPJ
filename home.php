@@ -1,5 +1,6 @@
 ﻿<?php
-require("connect.php");
+    require("connect.php");
+    include_once ("info4.php");
 ?>
 
 <!-- Stránka -->             
@@ -24,35 +25,53 @@ require("connect.php");
 
         <div class="container p-4" style="padding-top:10px">
             <div id="issue" class="container">
-                    <h3 class="pb-4 mb-4 fst-italic">č. 4/2022</h3>
-                        <div class="button-box col-12 me-2">
-                        <?php
-                        include("info4.php");
-                        ?>
-                        <a href="#info4" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#info4">Info</a>
-                        <a href="assets/data/cislo_4_2022.pdf" class="btn btn-outline-danger text-dark bg-white" target="_blank">Celé číslo v <img src="assets/img/PDF_icon.svg" class="icon"></a>
-                    </div>
-                    <div class="table-responsive border-top mt-4">
 
                         <?php
-                        $sql = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles JOIN Users ON Articles.UserID = Users.UserID WHERE JournalID=(SELECT JournalID FROM Journals WHERE Issue='4' AND Volume ='2022')";
-                        $result = $conn->query($sql);
+                        $condition = "vydaný"; //pouze vydané články"
+                        
+                        $sql1 = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume FROM Journals ORDER BY Journals.Volume DESC, Journals.Issue DESC LIMIT 1";
+                        $sql2 = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID INNER JOIN Journals ON Journals.JournalID = Articles.JournalID INNER JOIN Reviews ON Articles.ArticleID = Reviews.ArticleID WHERE Articles.Attribute LIKE '%".$condition."%'";
+                        
+                        $result1 = $conn->query($sql1);
+                        $result2 = $conn->query($sql2);
 
-                        if ($result->num_rows > 0) {
-                            
-                                echo "<table class='table'><tr><th style='width: 50%'>Název</th><th style='width: 40%'>Autor</th><th style='width: 10%'>PDF</th></tr>";
-                                    while($row = $result->fetch_assoc()) {
-                                        echo "<tr><td style='width: 50%'>".$row["Title"]."</td>
-                                            <td style='width: 40%'>".$row["Author"]."</td>
-                                            <td style='width: 10%'><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td></tr>";}
-                                            echo "</table>";
-                            
-                        } else {
-                            echo "žádné výsledky";
+                        if ($result1->num_rows > 0) {
+                            while($row = $result1->fetch_assoc()){
+                            $n = $row["Issue"];
+                
+                            $y = $row["Volume"];
+                                
+                            echo"<h3 class='pt-4 pb-4 mt-4'>č. ".$row["Volume"]."/ ".$row["Issue"]."</h3>";
+                                echo"<div class='button-box col-12 me-2'>";
+                                    echo"<button type='button'  class='btn btn-outline-dark' data-bs-toggle='modal' data-bs-target='#info".$n."'>Info</button>";
+                                    echo"<a href='assets/data/cislo_4_2022.pdf' class='btn btn-outline-danger text-dark bg-white' target='_blank'>Celé číslo v <img src='assets/img/PDF_icon.svg' class='icon'></a>";
+                                echo"</div>";
+                            echo "<div class='table-responsive border-top mt-4'>";
+                                
+
+                            if ($result2->num_rows > 0) {
+                                
+                                    echo "<table class='table'>
+                                        <tr>
+                                            <th style='width: 50%'>Název</th>
+                                            <th style='width: 40%'>Autor</th>
+                                            <th style='width: 10%'>PDF</th>
+                                        </tr>";
+                                        while($row = $result2->fetch_assoc()) {
+                                        echo "<tr>
+                                            <td style='width: 50%'>".$row["Title"]."</td>
+                                                <td style='width: 40%'>".$row["Author"]."</td>
+                                                <td style='width: 10%'><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>
+                                            </tr>";}
+                                    echo "</table>";
+                                
+                            } else {
+                                echo "žádné výsledky";
+                            }
                         }
-
+                    }
                         ?>
-                </div>
+                            </div>
             </div>
 
             

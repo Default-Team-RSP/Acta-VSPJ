@@ -70,7 +70,33 @@ include_once("setreview.php");
                             </a>
                             <div class="collapse" id="collapseArticles" aria-labelledby="headingOne" data-bs-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
+                        <?php
+                            if($_SESSION["role"]=='Author')
+                            {
+                        ?>
                                     <a class="nav-link" href="dashboard.php?link=dashboard">Přehled příspěvků</a>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                            if($_SESSION["role"]=='Reviewer')
+                            {
+                         ?>
+                                    <a class="nav-link" href="dashboard.php?link=reviewerAll">Přehled příspěvků</a>
+                        <?php
+                        }
+                        ?>
+
+                        <?php
+                            if($_SESSION["role"]=='Editor' || $_SESSION["role"]=='Chief' || $_SESSION["role"]=='Admin')
+                            {
+                        ?>
+                                    <a class="nav-link" href="dashboard.php?link=All">Přehled příspěvků</a>
+                        <?php
+                        }
+                        ?>
+
                         <?php
                             if($_SESSION["role"]=='Author')
                             {
@@ -82,7 +108,7 @@ include_once("setreview.php");
                                 </nav>                            
                             </div>                            
                         <?php
-                            if($_SESSION["role"]=='Chief')
+                            if($_SESSION["role"]=='Chief' || $_SESSION["role"]=='Admin')
                             {
                         ?>
                             <a class="nav-link collapsed" href="#" data-bs-toggle="collapse" data-bs-target="#collapseTasks" aria-expanded="false" aria-controls="collapseTasks">
@@ -103,12 +129,12 @@ include_once("setreview.php");
                         <?php
                         }
                         ?>
-                            <a class="nav-link" href="#">
+                            <!--<a class="nav-link" href="#">
                                 <div class="sb-nav-link-icon">
                                     <i class="bi bi-gear-fill"></i>
                                 </div>
                                 Nastavení
-                            </a>
+                            </a>-->
                             <hr class="dropdown-divider mt-3">
                             </hr>
                             <a class="nav-link btn btn-danger text-white" href="#helpdesk" data-bs-toggle="modal" data-bs-target="#helpdesk">
@@ -137,6 +163,14 @@ include_once("setreview.php");
                             if ($link == 'search'){
                                 $_SESSION["role"];
                                 include 'search.php';
+                            }
+                            if ($link == 'reviewerAll'){
+                                $_SESSION["role"];
+                                include 'reviewerAll.php';
+                            }
+                            if ($link == 'All'){
+                                $_SESSION["role"];
+                                include 'All.php';
                             }
                             if ($link == 'dashboard'){ goto s;}
                     }
