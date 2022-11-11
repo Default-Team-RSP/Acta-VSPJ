@@ -1,7 +1,7 @@
 ﻿-- vytvoření databáze
 
-CREATE DATABASE ActaVSPJ;
-USE ActaVSPJ;
+
+USE jirmus;
 
 -- vytvoření tabulky uživatelů
 
@@ -36,7 +36,7 @@ CREATE TABLE Articles (
     UserID int,
     JournalID int,
     PRIMARY KEY (ArticleID),
-    FOREIGN KEY (JournalID) REFERENCES Journals(JournalID)),
+    FOREIGN KEY (JournalID) REFERENCES Journals(JournalID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID));     -- id autora
 /* + data (PDF časopisu) */
 
