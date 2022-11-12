@@ -5,4 +5,4 @@
 
 
 
-[stránka]([195.113.207.163/~jirmus/RSP/index.php](http://195.113.207.163/~jirmus/RSP/index.php)
+(http://195.113.207.163/~jirmus/RSP/index.php)
