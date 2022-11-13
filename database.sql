@@ -11,7 +11,7 @@ CREATE TABLE Users (
     Lastname varchar(255),
     Username varchar(255),
     Password varchar(255),
-    Role varchar(255),                                  --role: Author, Editor (=redaktor), Chief (=šéfredaktor), Reviewer (=recenzent), Admin
+    Role varchar(255),                                  -- role: Author, Editor (=redaktor), Chief (=šéfredaktor), Reviewer (=recenzent), Admin
     PRIMARY KEY (UserID),
     UNIQUE (Username));
 
@@ -54,7 +54,6 @@ CREATE TABLE Reviews (
     Reference boolean,                                  -- doporučení (true = doporučuji / false = nedoporučuji)
     ArticleID int NOT NULL,
     PRIMARY KEY (ReviewID),
-    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID),
     FOREIGN KEY (UserID) REFERENCES Users(UserID));     -- id recenzenta
 
 -- vytvoření tabulky helpdeskového formuláře
@@ -69,3 +68,19 @@ CREATE TABLE Helpdesk (
     Issue varchar(255),                                 -- Popis problému
     Checkbox boolean,
     PRIMARY KEY (HelpdeskID));
+    
+    
+-- vytvoření tabulky souborů
+
+CREATE TABLE Files (
+    FileID int NOT NULL AUTO_INCREMENT,
+    Filename varchar(255) NOT NULL,
+    Type varchar(30) NOT NULL,
+    Content longblob NOT NULL,
+    UserID int,
+    JournalID int,
+    ArticleID int,
+    PRIMARY KEY(FileID),
+    FOREIGN KEY (UserID) REFERENCES Users(UserID),
+    FOREIGN KEY (JournalID) REFERENCES Journals(JournalID),
+    FOREIGN KEY (ArticleID) REFERENCES Articles(ArticleID));

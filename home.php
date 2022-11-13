@@ -30,7 +30,7 @@
                         $condition = "vydaný"; //pouze vydané články"
                         $n = 4;
                         $y = 2022;
-                        $sql1 = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume FROM Journals ORDER BY Journals.Volume DESC, Journals.Issue DESC LIMIT 1";
+                        $sql1 = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume FROM Journals WHERE Volume ='".$y."' AND Issue =".$n;
                         $sql2 = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID INNER JOIN Journals ON Journals.JournalID = Articles.JournalID INNER JOIN Reviews ON Articles.ArticleID = Reviews.ArticleID WHERE Articles.Attribute LIKE '%".$condition."%' AND Volume ='".$y."' AND Issue =".$n;
                         
                         $result1 = $conn->query($sql1);

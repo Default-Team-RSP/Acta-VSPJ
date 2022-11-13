@@ -101,7 +101,7 @@ include_once("setreview.php");
                             if($_SESSION["role"]=='Author')
                             {
                         ?>
-                                    <a class="nav-link" href="#">Vytvořit příspěvek</a>
+                                    <a class="nav-link" href="dashboard.php?link=insertarticle">Vytvořit příspěvek</a>
                         <?php
                         }
                         ?>
@@ -163,6 +163,10 @@ include_once("setreview.php");
                             if ($link == 'search'){
                                 $_SESSION["role"];
                                 include 'search.php';
+                            }
+                            if ($link == 'insertarticle'){
+                                $_SESSION["role"];
+                                include 'insertarticle.php';
                             }
                             if ($link == 'reviewerAll'){
                                 $_SESSION["role"];
