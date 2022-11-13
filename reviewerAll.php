@@ -49,7 +49,13 @@ require("connect.php");
                                     <td>".$row["Author"]."</td>
                                     <td>".$row["Attribute"]."</td>
                                     <td><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
-                                    echo"<td class='data-bs-toggle='tooltip' title='Oponentní formulář''><a href='#reviewform' data-bs-toggle='modal' data-bs-target='#setreview'><img src='assets/img/form.svg' class='icon'></a></td>";
+                                    $attr = $row['Attribute'];
+                                    if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
+                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='#showreview' data-bs-toggle='modal' data-bs-target='#showreview'><img src='assets/img/form-done.svg' class='icon'></a></td>";
+                                    } else {
+                                          echo"<td class='data-bs-toggle='tooltip' title='Oponentní formulář''><a href='#reviewform' data-bs-toggle='modal' data-bs-target='#setreview'><img src='assets/img/form.svg' class='icon'></a></td>";
+                                    }
+                                    
                         echo "</tr>";
                 }
                 
