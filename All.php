@@ -12,7 +12,7 @@ require("connect.php");
             <div class="card-body">
 <!-- tabulka -->
     <?php
-            $sql = "SELECT t1.ArticleID, t1.Title, t1.Attribute, t1.Author, t2.Reviewer FROM (SELECT Articles.ArticleID, Articles.Title, Articles.Attribute, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Role = 'Author') t1 LEFT JOIN (SELECT Reviews.ArticleID, CONCAT(Users.Firstname,' ',Users.Lastname) AS Reviewer FROM Reviews INNER JOIN Users ON Reviews.UserID = Users.UserID) t2 ON (t1.ArticleID=t2.ArticleID)";
+            $sql = "SELECT t1.Title, t1.Attribute, t1.Author, t2.Reviewer FROM (SELECT Articles.ArticleID, Articles.Title, Articles.Attribute, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Role = 'Author') t1 LEFT JOIN (SELECT Reviews.ArticleID, CONCAT(Users.Firstname,' ',Users.Lastname) AS Reviewer FROM Reviews INNER JOIN Users ON Reviews.UserID = Users.UserID) t2 ON (t1.ArticleID=t2.ArticleID)";
             
             $result = $conn->query($sql);
             
@@ -45,9 +45,19 @@ require("connect.php");
 
                         echo "<tr>
                                     <td>".$row["Title"]."</td>
-                                    <td>".$row["Author"]."</td>
-                                    <td>".$row["Reviewer"]."</td>
-                                    <td>".$row["Attribute"]."</td>
+                                    <td>".$row["Author"]."</td>";
+                                    $attr = $row['Attribute'];
+                                    if ($attr != 'nový') {
+                                          echo"<td>".$row["Reviewer"]."</td>";
+                                    } else {
+                                          echo"<td><select class='form-select' aria-label='Default select example'>
+  <option selected>Open this select menu</option>
+  <option value='1'>Recenzent 1</option>
+  <option value='2'>Recenzent 2</option>
+  <option value='3'>Recenzent 3</option>
+</select></td>";
+                                    }
+                                    echo"<td>".$row["Attribute"]."</td>
                                     <td><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
                                     $attr = $row['Attribute'];
                                     if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {

@@ -39,7 +39,6 @@ if (isset($_GET['action']))
             </div>
             <div class="modal-body">
                 <div class="container mt-3">
-                <?php if(isset($error_msg)){ echo $error_msg; } ?>
                     <form action="./index.php?action=validate" method="post">
                         <div class="mb-3 mt-3">
                             <label for="username">Uživatelské jméno</label>
@@ -57,5 +56,3 @@ if (isset($_GET['action']))
         </div>
     </div>
 </div>
-
-<?php if(isset($script)){ echo $script; } ?>
