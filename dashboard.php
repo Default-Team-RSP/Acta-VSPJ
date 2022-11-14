@@ -5,6 +5,7 @@ session_start();
 
 include_once("helpdesk.php");
 include_once("setreview.php");
+
 ?>
 
 <!DOCTYPE html>
@@ -101,7 +102,7 @@ include_once("setreview.php");
                             if($_SESSION["role"]=='Author')
                             {
                         ?>
-                                    <a class="nav-link" href="dashboard.php?link=insertarticle">Vytvořit příspěvek</a>
+                                    <a class="nav-link" href="dashboard.php?link=articleform">Vytvořit příspěvek</a>
                         <?php
                         }
                         ?>
@@ -163,6 +164,10 @@ include_once("setreview.php");
                             if ($link == 'search'){
                                 $_SESSION["role"];
                                 include 'search.php';
+                            }
+                            if ($link == 'articleform'){
+                                $_SESSION["role"];
+                                include 'articleform.php';
                             }
                             if ($link == 'insertarticle'){
                                 $_SESSION["role"];
