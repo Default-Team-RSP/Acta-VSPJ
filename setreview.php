@@ -1,22 +1,26 @@
-<div class="modal fade" id="setreview">
-    <div class="modal-dialog modal-dialog-scrollable modal-lg">
-        <div class="modal-content">
-            <div class="modal-header bg-dark text-white border border-white">
-                <h4 class="modal-title">Oponentní formulář</h4>
+﻿<?php
+    require("connect.php");
+?>
+<main>
+        <div class="container my-5">
+            <div class="p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+                <div class="card mb-4">
+                    <div class="card-header bg-dark text-white border border-white">
+                Oponentní formulář
             </div>
-            <div class="modal-body">
-                <div class="container mt-3">
+                    <div class="card-body">
+                        <div class="container mt-3">
                 
-                    <form action="./index.php?action=validate" method="post">
+                    <form action="./dashboard.php?link=setreview" method="post" enctype="multipart/form-data">
 
                         <div class="mt-3">
                             <label for="asset-range" class="form-label"><strong>Aktuálnost, zajímavost a přínosnost </strong> (0 - 10 b.)</label>
-                            <input type="range" class="form-range" min="0" max="10" step="1" onchange="updateTextInput(this.value, 'asset');">
+                            <input type="range" class="form-range" min="0" max="10" step="1" >
                         </div>
                         <div class="mb-3 row">
                             <label for="asset" class="col-sm-2 col-form-label">Body:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="asset" name="asset" value="" readonly class="form-control-plaintext">
+                                <input type="text" id="asset" name="asset" value="" disabled class="form-control-plaintext">
                             </div>
                         </div>
 
@@ -27,7 +31,7 @@
                         <div class="mb-3 row">
                             <label for="originality" class="col-sm-2 col-form-label">Body:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="originality" name="originality" value="" readonly class="form-control-plaintext">
+                                <input type="text" id="originality" name="originality" value="" disabled class="form-control-plaintext">
                             </div>
                         </div>
 
@@ -38,7 +42,7 @@
                         <div class="mb-3 row">
                             <label for="expertness" class="col-sm-2 col-form-label">Body:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="expertness" name="expertness" value="" readonly class="form-control-plaintext">
+                                <input type="text" id="expertness" name="expertness" value="" disabled class="form-control-plaintext">
                             </div>
                         </div>
 
@@ -49,7 +53,7 @@
                         <div class="mb-3 row">
                             <label for="grammar" class="col-sm-2 col-form-label">Body:</label>
                             <div class="col-sm-10">
-                                <input type="text" id="grammar" name="grammar" value="" readonly class="form-control-plaintext">
+                                <input type="text" id="grammar" name="grammar" value="" disabled class="form-control-plaintext">
                             </div>
                         </div>
 
@@ -76,19 +80,20 @@
                         </div>
                         <div class="mb-3">
                             <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" id="reference" onclick="yesno(this, 'yesnos');" />
+                                <input class="form-check-input" type="checkbox" id="reference" name="reference" onclick="yesno(this, 'yesnos');" />
                             </div>
                             <p id="yesnos" class="mb-5"></p>
                         </div>
                         
                         <button type="submit" class="btn btn-dark">Odeslat</button>
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Zavřít</button>
+                        <button type="button" class="btn btn-secondary" onclick="history.back()">Zavřít</button>
                     </form>
                 </div>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+          </div>
+    </main>
 
 <script>
 function updateTextInput(val, elId) {
