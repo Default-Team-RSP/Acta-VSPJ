@@ -66,7 +66,7 @@ require("connect.php");
                                     }
                                     $attr = $row['Attribute'];
                                     if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
-                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='#showreview' data-bs-toggle='modal' data-bs-target='#showreview'><img src='assets/img/form-done.svg' class='icon'></a></td>";
+                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='dashboard.php?link=showreview&id={$row['ArticleID']}'><img src='assets/img/form-done.svg' class='icon'></a></td>";
                                     } else {
                                           echo"<td></td>";
                                     }

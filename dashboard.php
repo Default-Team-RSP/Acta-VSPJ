@@ -4,7 +4,6 @@ ob_start();
 session_start();
 
 include_once("helpdesk.php");
-include_once("setreview.php");
 
 ?>
 
@@ -172,6 +171,14 @@ include_once("setreview.php");
                             if ($link == 'insertarticle'){
                                 $_SESSION["role"];
                                 include 'insertarticle.php';
+                            }
+                            if ($link == 'setreview'){
+                                $_SESSION["role"];
+                                include 'setreview.php';
+                            }
+                            if ($link == 'showreview'){
+                                $_SESSION["role"];
+                                include 'showreview.php';
                             }
                             if ($link == 'reviewerAll'){
                                 $_SESSION["role"];

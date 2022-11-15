@@ -14,7 +14,7 @@ require("connect.php");
 <!-- tabulka -->
     <?php
             $username = $_SESSION["username"]; //pouze konkrétního uživatele
-            $sql = "SELECT Articles.Title AS Title, Articles.Attribute AS Attribute, Users.Username, Files.FileID FROM Articles JOIN Users ON Articles.UserID = Users.UserID LEFT JOIN Files ON Articles.ArticleID = Files.ArticleID WHERE Username='".$username."'";
+            $sql = "SELECT Articles.Title, Articles.ArticleID, Articles.Attribute, Users.Username, Files.FileID FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID LEFT JOIN Files ON Articles.ArticleID = Files.ArticleID WHERE Username='".$username."'";
 
             $result = $conn->query($sql);
             
@@ -52,7 +52,7 @@ require("connect.php");
                                     }
                                     $attr = $row['Attribute'];
                                     if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
-                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='#showreview' data-bs-toggle='modal' data-bs-target='#showreview'><img src='assets/img/form-done.svg' class='icon'></a></td>";
+                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='dashboard.php?link=showreview&id={$row['ArticleID']}'><img src='assets/img/form-done.svg' class='icon'></a></td>";
                                     } else {
                                           echo"<td></td>";
                                     }

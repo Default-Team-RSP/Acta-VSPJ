@@ -68,7 +68,7 @@ $sql1 = "SELECT Users.Firstname, Users.Lastname FROM Users WHERE Users.Username 
 
 <?php    
 
-$attr = "nový";  //všem nahraným článkům nastavý příznak nový
+$attr = "nový";  //všem nahraným článkům nastaví příznak nový
 if(isset($_POST['title'])) {
 $title= $conn->real_escape_string($_POST['title']);
 
