@@ -1,4 +1,4 @@
-﻿<!-- UPLOAD CELÝCH ČÍSEL V PDF -->
+﻿<!-- UPLOAD CELÝCH ČÍSEL V PDF na strance index.php?stranka=upload (jen pro adminy) -->
 
 <?php
     require("connect.php");
