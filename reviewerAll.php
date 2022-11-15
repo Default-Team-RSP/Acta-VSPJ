@@ -13,7 +13,7 @@ require("connect.php");
 <!-- tabulka -->
     <?php
             $username = $_SESSION["username"]; //pouze konkrétního uživatele
-            $sql = "SELECT t1.Title, t1.Attribute, t1.Author FROM (SELECT Articles.ArticleID, Articles.Title, Articles.Attribute, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Role = 'Author') t1 LEFT JOIN (SELECT Reviews.ArticleID, Reviews.UserID, Users.Username FROM Reviews INNER JOIN Users ON Reviews.UserID = Users.UserID) t2 ON (t1.ArticleID=t2.ArticleID) WHERE t2.Username ='".$username."'";
+            $sql = "SELECT t1.ArticleID, t1.Title, t1.Attribute, t1.Author, Files.FileID FROM (SELECT Articles.ArticleID, Articles.Title, Articles.Attribute, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Role = 'Author') t1 LEFT JOIN (SELECT Reviews.ArticleID, Reviews.UserID, Users.Username FROM Reviews INNER JOIN Users ON Reviews.UserID = Users.UserID) t2 ON (t1.ArticleID=t2.ArticleID) LEFT JOIN Files ON t1.ArticleID = Files.ArticleID WHERE t2.Username ='".$username."'";
             
             
             $result = $conn->query($sql);
@@ -46,8 +46,13 @@ require("connect.php");
                         echo "<tr>
                                     <td>".$row["Title"]."</td>
                                     <td>".$row["Author"]."</td>
-                                    <td>".$row["Attribute"]."</td>
-                                    <td><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
+                                    <td>".$row["Attribute"]."</td>";
+                                    $pdf = $row['FileID'];
+                                    if (is_null($pdf)) {
+                                          echo"<td></td>";
+                                    } else {
+                                          echo"<td><a href='get_file.php?id={$row['FileID']}'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
+                                    }
                                     $attr = $row['Attribute'];
                                     if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
                                           echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='#showreview' data-bs-toggle='modal' data-bs-target='#showreview'><img src='assets/img/form-done.svg' class='icon'></a></td>";

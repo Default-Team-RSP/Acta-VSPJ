@@ -15,7 +15,7 @@ require("connect.php");
 
     $condition = "vydaný"; //pouze vydané články"
 
-    $sql = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author, Journals.Topic AS Topic FROM Journals INNER JOIN Articles ON Journals.JournalID = Articles.JournalID INNER JOIN Users ON Articles.UserID = Users.UserID INNER JOIN Reviews ON Articles.ArticleID = Reviews.ArticleID WHERE Articles.Attribute LIKE '%".$condition."%'";
+    $sql = "SELECT t1.ArticleID, t1.Title, t1.Attribute, t1.Author, t2.Topic, Files.FileID FROM (SELECT Articles.JournalID, Articles.ArticleID, Articles.Title, Articles.Attribute, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID WHERE Role = 'Author') t1 LEFT JOIN (SELECT Journals.JournalID, Journals.Topic FROM Journals) t2 ON (t1.JournalID=t2.JournalID) LEFT JOIN Files ON t1.ArticleID = Files.ArticleID WHERE t1.Attribute LIKE '%".$condition."%'";
     
     $result = $conn->query($sql);
     
@@ -43,10 +43,16 @@ require("connect.php");
         while($row = $result->fetch_assoc()){
 
                 echo "<tr>
-                            <td>".$row["Title"]."</td>
-                            <td>".$row["Topic"]."</td>
-                            <td>".$row["Author"]."</td>
-                            <td><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td></tr>";
+                    <td>".$row["Title"]."</td>
+                    <td>".$row["Topic"]."</td>
+                    <td>".$row["Author"]."</td>";
+                    $pdf = $row['FileID'];
+                    if (is_null($pdf)) {
+                        echo"<td></td>";
+                    } else {
+                        echo"<td><a href='get_file.php?id={$row['FileID']}'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
+                    }
+                echo "</tr>";
         }
         
             echo "</tbody>

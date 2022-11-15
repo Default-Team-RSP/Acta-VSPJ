@@ -14,7 +14,7 @@ require("connect.php");
 <!-- tabulka -->
     <?php
             $username = $_SESSION["username"]; //pouze konkrétního uživatele
-            $sql = "SELECT Articles.Title AS Title, Articles.Attribute AS Attribute, Users.Username FROM Articles JOIN Users ON Articles.UserID = Users.UserID WHERE Username='".$username."'";
+            $sql = "SELECT Articles.Title AS Title, Articles.Attribute AS Attribute, Users.Username, Files.FileID FROM Articles JOIN Users ON Articles.UserID = Users.UserID LEFT JOIN Files ON Articles.ArticleID = Files.ArticleID WHERE Username='".$username."'";
 
             $result = $conn->query($sql);
             
@@ -43,8 +43,13 @@ require("connect.php");
 
                         echo "<tr>
                                     <td>".$row["Title"]."</td>
-                                    <td>".$row["Attribute"]."</td>
-                                    <td><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
+                                    <td>".$row["Attribute"]."</td>";
+                                    $pdf = $row['FileID'];
+                                    if (is_null($pdf)) {
+                                          echo"<td></td>";
+                                    } else {
+                                          echo"<td><a href='get_file.php?id={$row['FileID']}'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>";
+                                    }
                                     $attr = $row['Attribute'];
                                     if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
                                           echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='#showreview' data-bs-toggle='modal' data-bs-target='#showreview'><img src='assets/img/form-done.svg' class='icon'></a></td>";

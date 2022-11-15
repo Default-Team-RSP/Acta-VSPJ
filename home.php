@@ -30,8 +30,8 @@
                         $condition = "vydaný"; //pouze vydané články"
                         $n = 4;
                         $y = 2022;
-                        $sql1 = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume FROM Journals WHERE Volume ='".$y."' AND Issue =".$n;
-                        $sql2 = "SELECT Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Articles INNER JOIN Users ON Articles.UserID = Users.UserID INNER JOIN Journals ON Journals.JournalID = Articles.JournalID WHERE Articles.Attribute LIKE '%".$condition."%' AND Volume ='".$y."' AND Issue ='".$n."'";
+                        $sql1 = "SELECT Files.FileID, Journals.Issue AS Issue, Journals.Volume AS Volume FROM Files RIGHT JOIN Journals ON Journals.JournalID = Files.JournalID WHERE Volume ='".$y."' AND Issue =".$n;
+                        $sql2 = "SELECT Files.FileID, Articles.Title AS Title, CONCAT(Users.Firstname,' ',Users.Lastname) AS Author FROM Files RIGHT JOIN Articles ON Files.ArticleID=Articles.ArticleID INNER JOIN Users ON Articles.UserID = Users.UserID INNER JOIN Journals ON Journals.JournalID = Articles.JournalID WHERE Articles.Attribute LIKE '%".$condition."%' AND Volume ='".$y."' AND Issue ='".$n."'";
                         
                         $result1 = $conn->query($sql1);
                         $result2 = $conn->query($sql2);
@@ -41,7 +41,12 @@
                             echo"<h3 class='pt-4 pb-4 mt-4'>č. ".$row["Volume"]."/ ".$row["Issue"]."</h3>";
                                 echo"<div class='button-box col-12 me-2'>";
                                     echo"<button type='button'  class='btn btn-outline-dark' data-bs-toggle='modal' data-bs-target='#info_".$y."_".$n."'>Info</button>";
-                                    echo"<a href='assets/data/cislo_4_2022.pdf' class='btn btn-outline-danger text-dark bg-white' target='_blank'>Celé číslo v <img src='assets/img/PDF_icon.svg' class='icon'></a>";
+                                    $pdf = $row['FileID'];
+                                    if (is_null($pdf)) {
+                                        echo" ";
+                                    } else {
+                                        echo"<a href='get_file.php?id={$row['FileID']}' class='btn btn-outline-danger text-dark bg-white' target='_blank'>Celé číslo v <img src='assets/img/PDF_icon.svg' class='icon'></a>";
+                                    }
                                 echo"</div>";
                             echo "<div class='table-responsive border-top mt-4'>";
                                 
@@ -58,7 +63,7 @@
                                         echo "<tr>
                                             <td style='width: 50%'>".$row["Title"]."</td>
                                                 <td style='width: 40%'>".$row["Author"]."</td>
-                                                <td style='width: 10%'><a href='assets/data/clanek_1.pdf' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>
+                                                <td style='width: 10%'><a href='get_file.php?id={$row['FileID']}' target='_blank'><img src='assets/img/PDF_icon.svg' class='icon'></a></td>
                                             </tr>";}
                                     echo "</table>";
                                 

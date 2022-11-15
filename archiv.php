@@ -12,7 +12,7 @@
     <h2 class="pb-4 mb-4">Archiv</h2>
 
     <?php
-        $sql = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume FROM Journals ORDER BY Journals.Volume DESC, Journals.Issue DESC";
+        $sql = "SELECT Journals.Issue AS Issue, Journals.Volume AS Volume, Files.FileID FROM Journals LEFT JOIN Files ON Journals.JournalID = Files.JournalID ORDER BY Journals.Volume DESC, Journals.Issue DESC";
 
         $result = $conn->query($sql);
         
@@ -26,7 +26,13 @@
             echo"<h3 class='pt-4 pb-4 mt-4'>č. ".$row["Volume"]."/ ".$row["Issue"]."</h3>";
                 echo"<div class='button-box col-12 me-2'>";
                     echo"<button type='button'  class='btn btn-outline-dark' data-bs-toggle='modal' data-bs-target='#info_".$y."_".$n."'>Info</button>";
-                    echo"<a href='assets/data/cislo_4_2022.pdf' class='btn btn-outline-danger text-dark bg-white' target='_blank'>Celé číslo v <img src='assets/img/PDF_icon.svg' class='icon'></a>";
+                    $pdf = $row['FileID'];
+                    if (is_null($pdf)) {
+                        echo" ";
+                    } else {
+                        echo"<a href='get_file.php?id={$row['FileID']}' class='btn btn-outline-danger text-dark bg-white' target='_blank'>Celé číslo v <img src='assets/img/PDF_icon.svg' class='icon'></a>";
+                    }
+                    
                 echo"</div>";
             }
         }
