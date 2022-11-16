@@ -74,6 +74,7 @@ CREATE TABLE Helpdesk (
 
 CREATE TABLE Files (
     FileID int NOT NULL AUTO_INCREMENT,
+    Timestamp timestamp,
     Filename varchar(255) NOT NULL,
     Type varchar(30) NOT NULL,
     Content longblob NOT NULL,

@@ -93,12 +93,14 @@ include_once("helpdesk.php");
                             {
                         ?>
                                     <a class="nav-link" href="dashboard.php?link=All">Přehled příspěvků</a>
+                                    <a class="nav-link" href="dashboard.php?link=issueform">Vytvořit číslo</a>
+                                    
                         <?php
                         }
                         ?>
 
                         <?php
-                            if($_SESSION["role"]=='Author')
+                            if($_SESSION["role"]=='Author' || $_SESSION["role"]=='Admin')
                             {
                         ?>
                                     <a class="nav-link" href="dashboard.php?link=articleform">Vytvořit příspěvek</a>
@@ -171,6 +173,14 @@ include_once("helpdesk.php");
                             if ($link == 'insertarticle'){
                                 $_SESSION["role"];
                                 include 'insertarticle.php';
+                            }
+                            if ($link == 'issueform'){
+                                $_SESSION["role"];
+                                include 'issueform.php';
+                            }
+                            if ($link == 'insertissue'){
+                                $_SESSION["role"];
+                                include 'insertissue.php';
                             }
                             if ($link == 'setreview'){
                                 $_SESSION["role"];

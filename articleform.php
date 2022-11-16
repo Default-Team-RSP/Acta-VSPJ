@@ -54,9 +54,22 @@ $sql1 = "SELECT Users.Firstname, Users.Lastname FROM Users WHERE Users.Username 
                                     <input type="text" class="form-control" id="title" name="title" required />
                                 </div>
                             </div>
-
+                            <?php
+                            if($_SESSION["role"]=='Admin')
+                            {
+                            ?>
+                            <div class="mb-3 row">
+                            <label for="attr" class="col-sm-2 col-form-label">Stav:</label>
+                            <select class="form-select" id="attr" name="attr">
+                                <option value="nový">nový</option>
+                                <option value="vydaný">vydaný</option>
+                            </select>
+                            </div>
+                            <?php
+                            }
+                            ?>
                             <input type="submit" class="btn btn-dark" value="Dál"/>
-                            <a href="dashboard.php" type="button" class="btn btn-secondary">Zavřít</a>
+                            <button type="button" class="btn btn-secondary" onclick="history.back()">Zavřít</button>
                         </form>
                     </div>
                 </div>
@@ -67,11 +80,16 @@ $sql1 = "SELECT Users.Firstname, Users.Lastname FROM Users WHERE Users.Username 
 
 
 <?php    
-
-$attr = "nový";  //všem nahraným článkům nastaví příznak nový
-if(isset($_POST['title'])) {
+$attr = "nový";
+ if($_SESSION["role"]=='Admin')
+                            {
+if(
+    isset($_POST['title']) &&
+    isset($_POST['attr'])
+    
+) {
 $title= $conn->real_escape_string($_POST['title']);
-
+$attr= $conn->real_escape_string($_POST['attr']);
 
 $query = "INSERT INTO Articles (UserID, Title, Attribute) VALUES((SELECT UserID FROM Users WHERE Username = '$username'),'$title', '$attr')";
                        // Execute the query
@@ -87,4 +105,30 @@ $query = "INSERT INTO Articles (UserID, Title, Attribute) VALUES((SELECT UserID 
             }
 
 $conn->close(); }
+}
+else
+{
+   
+    if(
+    isset($_POST['title'])
+    
+) {
+$title= $conn->real_escape_string($_POST['title']);
+$attr = "nový";
+
+$query = "INSERT INTO Articles (UserID, Title, Attribute) VALUES((SELECT UserID FROM Users WHERE Username = '$username'),'$title', '$attr')";
+                       // Execute the query
+            $result = $conn->query($query);
+     
+            // Check if it was successfull
+            if($result) {
+                header("location: dashboard.php?link=insertarticle");
+            }
+            else {
+                echo 'Error!'
+                   . "<pre>{$conn->error}</pre>";
+            }
+
+$conn->close(); }
+}
 ?>

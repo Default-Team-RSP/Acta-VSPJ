@@ -7,11 +7,11 @@
         <div class="p-4 align-items-center rounded-3 border shadow-lg">
             <div class="card mb-4">
                 <div class="card-header bg-dark text-white border border-white">
-                    Formulář pro vložení příspěvku
+                    Formulář pro vložení čísla
                 </div>
                 <div class="card-body">
                     <div class="container mt-3">
-                        <form class="row g-2" action="dashboard.php?link=insertarticle" method="post" enctype="multipart/form-data">
+                        <form class="row g-2" action="dashboard.php?link=insertissue" method="post" enctype="multipart/form-data">
                             <div class="col-auto">
                                 <input class="form-control" type="file" name="uploaded_file" id="formFile">
                             </div>
@@ -25,8 +25,6 @@
 
 
 <?php
-$username = $_SESSION["username"]; //reference na konkrétního uživatele
-
 
     // Check if a file has been uploaded
     if(isset($_FILES['uploaded_file'])) {
@@ -43,8 +41,8 @@ $username = $_SESSION["username"]; //reference na konkrétního uživatele
             // Create the SQL query
             $query = "
                 
-                INSERT INTO Files (Filename, Type, UserID, ArticleID, Content)
-                VALUES ('{$name}', '{$mime}', (SELECT UserID FROM Users WHERE Username = '$username'), (SELECT ArticleID FROM Articles ORDER BY ArticleID DESC LIMIT 1), '{$data}')
+                INSERT INTO Files (Filename, Type, JournalID, Content)
+                VALUES ('{$name}', '{$mime}', (SELECT JournalID FROM Journals ORDER BY JournalID DESC LIMIT 1), '{$data}')
                ";
                 
                 
