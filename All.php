@@ -50,12 +50,7 @@ require("connect.php");
                                     if ($attr != 'nový') {
                                           echo"<td>".$row["Reviewer"]."</td>";
                                     } else {
-                                          echo"<td><select class='form-select' aria-label='Default select example'>
-  <option selected>Open this select menu</option>
-  <option value='1'>Recenzent 1</option>
-  <option value='2'>Recenzent 2</option>
-  <option value='3'>Recenzent 3</option>
-</select></td>";
+                                          echo"<td class='data-bs-toggle='tooltip' title='Výběr recenzenta''><a href='dashboard.php?link=selreviewer&aid={$row['ArticleID']}'><img src='assets/img/form-person.svg' class='icon'></a></td>";
                                     }
                                     echo"<td>".$row["Attribute"]."</td>";
                                     $pdf = $row['FileID'];
@@ -66,7 +61,7 @@ require("connect.php");
                                     }
                                     $attr = $row['Attribute'];
                                     if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
-                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='dashboard.php?link=showreview&id={$row['ArticleID']}'><img src='assets/img/form-done.svg' class='icon'></a></td>";
+                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='dashboard.php?link=showreview&aid={$row['ArticleID']}'><img src='assets/img/form-done.svg' class='icon'></a></td>";
                                     } else {
                                           echo"<td></td>";
                                     }

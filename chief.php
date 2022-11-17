@@ -54,16 +54,7 @@ require("connect.php");
                                     if ($attr != 'nový') {
                                           echo"<td>".$row["Reviewer"]."</td>";
                                     } else {
-                                          echo"<td>";
-                                          echo"<select class='form-select' aria-label='Default select example'>";
-                                          if ($result2->num_rows > 0) {
-                                              echo"<option selected>Recenzent</option>";
-                                              while($row = $result2->fetch_assoc()) {
-                                                echo"<option>".$row["Reviewer"]."</option>";
-                                              }
-                                              echo"</select>";
-                                          }
-                                          echo "</td>";
+                                          echo"<td class='data-bs-toggle='tooltip' title='Výběr recenzenta''><a href='dashboard.php?link=selreviewer&aid={$row['ArticleID']}'><img src='assets/img/form-person.svg' class='icon'></a></td>";
                                     }
                                     echo"<td>".$row["Attribute"]."</td>";
                                     $pdf = $row['FileID'];
@@ -74,7 +65,7 @@ require("connect.php");
                                     }
                                     $attr = $row['Attribute'];
                                     if ($attr != 'nový' && $attr != 'odeslaný do recenzního řízení') {
-                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='#showreview' data-bs-toggle='modal' data-bs-target='#showreview'><img src='assets/img/form-done.svg' class='icon'></a></td>";
+                                          echo"<td class='data-bs-toggle='tooltip' title='Zobrazit oponentní formulář''><a href='dashboard.php?link=showreview&aid={$row['ArticleID']}'><img src='assets/img/form-done.svg' class='icon'></a></td>";
                                     } else {
                                           echo"<td></td>";
                                     }

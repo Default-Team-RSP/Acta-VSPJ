@@ -194,6 +194,10 @@ include_once("helpdesk.php");
                                 $_SESSION["role"];
                                 include 'reviewerAll.php';
                             }
+                            if ($link == 'selreviewer'){
+                                $_SESSION["role"];
+                                include 'selreviewer.php';
+                            }
                             if ($link == 'All'){
                                 $_SESSION["role"];
                                 include 'All.php';
